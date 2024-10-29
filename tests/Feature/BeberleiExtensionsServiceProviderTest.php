@@ -23,9 +23,6 @@ class BeberleiExtensionsServiceProviderTest extends TestCase
 
         $this->provider = new BeberleiExtensionsServiceProvider($this->app);
 
-        // silence the 'This test did not perform any assertions' warning
-        $this->assertTrue(true);
-
         parent::setUp();
     }
 
@@ -34,5 +31,8 @@ class BeberleiExtensionsServiceProviderTest extends TestCase
         $this->manager->shouldReceive('extendAll')->once();
 
         $this->provider->boot($this->manager);
+
+        // silence the 'This test did not perform any assertions' warning
+        $this->assertTrue(true);
     }
 }

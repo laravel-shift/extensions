@@ -13,10 +13,8 @@ class BlameableExtensionTest extends TestCase
 {
     public function testCanRegisterExtension(): void
     {
-        $guard = m::mock(Guard::class);
-
         $extension = new BlameableExtension(
-            $guard,
+            m::mock(Guard::class),
         );
 
         $extension->addSubscribers(
