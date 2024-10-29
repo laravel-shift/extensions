@@ -94,11 +94,4 @@ class BeberleiExtensionsServiceProvider extends ServiceProvider
             $configuration->setCustomStringFunctions($this->string);
         });
     }
-
-    /**
-     * Register the service provider.
-     */
-    public function register(): void
-    {
-    }
 }

@@ -37,7 +37,8 @@
         "mockery/mockery": "^1.6",
         "php-parallel-lint/php-parallel-lint": "^1.4",
         "phpstan/phpstan": "^1.12",
-        "phpunit/phpunit": "^11.4"
+        "phpunit/phpunit": "^11.4",
+        "orchestra/testbench": "^9.5"
     },
     "suggest": {
         "gedmo/doctrine-extensions": "Behavioral Doctrine2 extensions",
@@ -50,7 +51,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "LaravelDoctrineTest\\Extensions\\": "tests/"
+            "LaravelDoctrineTest\\Extensions\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
         }
     },
     "scripts": {
@@ -60,7 +64,22 @@
             "vendor/bin/phpunit",
             "vendor/bin/phpstan analyze src --level 1"
         ],
-        "coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html=coverage"
+        "coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html=coverage",
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve --ansi"
+        ],
+        "lint": [
+            "@php vendor/bin/phpstan analyse --verbose --ansi"
+        ]
     },
     "config": {
         "allow-plugins": {

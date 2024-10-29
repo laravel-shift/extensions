@@ -1,0 +1,18 @@
+providers:
+  - LaravelDoctrine\ORM\DoctrineServiceProvider
+  - LaravelDoctrine\Extensions\BeberleiExtensionsServiceProvider
+  - LaravelDoctrine\Extensions\GedmoExtensionsServiceProvider
+
+workbench:
+  start: '/'
+  install: true
+  health: false
+  discovers:
+    web: false
+    api: false
+    commands: false
+    components: false
+    views: false
+  assets:
+    - laravel-assets
+  sync: []
