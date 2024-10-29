@@ -1,22 +1,20 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
+declare(strict_types=1);
+
+namespace LaravelDoctrineTest\Extensions\Feature\Uploadable;
+
 use Gedmo\Uploadable\UploadableListener;
 use Illuminate\Contracts\Foundation\Application;
 use LaravelDoctrine\Extensions\Uploadable\UploadableExtensionServiceProvider;
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 
 class UploadableExtensionServiceProviderTest extends TestCase
 {
-    /**
-     * @var \Mockery\MockInterface|Application
-     */
-    protected $app;
+    protected Application $app;
 
-    /**
-     * @var \Mockery\MockInterface|BeberleiExtensionsServiceProvider
-     */
-    protected $provider;
+    protected UploadableExtensionServiceProvider $provider;
 
     public function setUp(): void
     {
@@ -25,7 +23,7 @@ class UploadableExtensionServiceProviderTest extends TestCase
         $this->provider = new UploadableExtensionServiceProvider($this->app);
     }
 
-    public function test_listener_gets_bound_as_singleton()
+    public function testListenerGetsBoundAsSingleton(): void
     {
         $this->app->shouldReceive('singleton')
                   ->once()

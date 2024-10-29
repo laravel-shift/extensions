@@ -1,21 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
+namespace LaravelDoctrineTest\Extensions\Feature\SoftDeletes;
+
+use DateTime;
+use LaravelDoctrineTest\Extensions\Assets\SoftDeletes\SoftDeletesEntity;
 use PHPUnit\Framework\TestCase;
-use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 
 class SoftDeletesTest extends TestCase
 {
-    /**
-     * @var SoftDeletesEntity
-     */
-    protected $entity;
+    protected SoftDeletesEntity $entity;
 
     public function setUp(): void
     {
         $this->entity = new SoftDeletesEntity();
     }
 
-    public function test_can_set_deleted_at()
+    public function testCanSetDeletedAt(): void
     {
         $date = new DateTime('now');
 
@@ -24,7 +26,7 @@ class SoftDeletesTest extends TestCase
         $this->assertEquals($date, $this->entity->getDeletedAt());
     }
 
-    public function test_can_check_if_deleted()
+    public function testCanCheckIfDeleted(): void
     {
         $this->assertFalse($this->entity->isDeleted());
 
@@ -32,7 +34,7 @@ class SoftDeletesTest extends TestCase
         $this->assertTrue($this->entity->isDeleted());
     }
 
-    public function test_can_restore()
+    public function testCanRestore(): void
     {
         $this->entity->setDeletedAt(new DateTime('now'));
         $this->assertTrue($this->entity->isDeleted());
@@ -40,9 +42,4 @@ class SoftDeletesTest extends TestCase
         $this->entity->restore();
         $this->assertFalse($this->entity->isDeleted());
     }
-}
-
-class SoftDeletesEntity
-{
-    use SoftDeletes;
 }

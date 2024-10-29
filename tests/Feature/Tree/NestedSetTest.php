@@ -1,50 +1,46 @@
 <?php
 
+declare(strict_types=1);
+
+namespace LaravelDoctrineTest\Extensions\Feature\Tree;
+
+use LaravelDoctrineTest\Extensions\Assets\Tree\NestedSetEntity;
 use PHPUnit\Framework\TestCase;
-use LaravelDoctrine\Extensions\Tree\NestedSet;
 
 class NestedSetTest extends TestCase
 {
-    /**
-     * @var NestedSetEntity
-     */
-    protected $entity;
+    protected NestedSetEntity $entity;
 
     public function setUp(): void
     {
         $this->entity = new NestedSetEntity();
     }
 
-    public function test_can_set_root()
+    public function testCanSetRoot(): void
     {
         $this->entity->setRoot(10);
 
         $this->assertEquals(10, $this->entity->getRoot());
     }
 
-    public function test_can_set_level()
+    public function testCanSetLevel(): void
     {
         $this->entity->setLevel(5);
 
         $this->assertEquals(5, $this->entity->getLevel());
     }
 
-    public function test_can_set_left()
+    public function testCanSetLeft(): void
     {
         $this->entity->setLeft(3);
 
         $this->assertEquals(3, $this->entity->getLeft());
     }
 
-    public function test_can_set_right()
+    public function testCanSetRight(): void
     {
         $this->entity->setRight(2);
 
         $this->assertEquals(2, $this->entity->getRight());
     }
-}
-
-class NestedSetEntity
-{
-    use NestedSet;
 }

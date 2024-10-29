@@ -1,17 +1,21 @@
 <?php
 
-use LaravelDoctrine\Extensions\Sluggable\SluggableExtension;
+declare(strict_types=1);
 
-class SluggableExtensionTest extends ExtensionTestCase
+namespace LaravelDoctrineTest\Extensions\Feature\Sluggable;
+
+use LaravelDoctrine\Extensions\Sluggable\SluggableExtension;
+use LaravelDoctrineTest\Extensions\Feature\TestCase;
+
+class SluggableExtensionTest extends TestCase
 {
-    public function test_can_register_extension()
+    public function testCanRegisterExtension(): void
     {
         $extension = new SluggableExtension();
 
         $extension->addSubscribers(
             $this->evm,
             $this->em,
-            $this->reader
         );
 
         $this->assertEmpty($extension->getFilters());

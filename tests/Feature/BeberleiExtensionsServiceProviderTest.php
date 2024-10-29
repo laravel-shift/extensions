@@ -1,27 +1,20 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
+declare(strict_types=1);
+
+namespace LaravelDoctrineTest\Extensions\Feature;
+
 use Illuminate\Contracts\Foundation\Application;
 use LaravelDoctrine\Extensions\BeberleiExtensionsServiceProvider;
 use LaravelDoctrine\ORM\DoctrineManager;
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 
 class BeberleiExtensionsServiceProviderTest extends TestCase
 {
-    /**
-     * @var \Mockery\MockInterface|Application
-     */
-    protected $app;
-
-    /**
-     * @var \Mockery\MockInterface|BeberleiExtensionsServiceProvider
-     */
-    protected $provider;
-
-    /**
-     * @var \Mockery\MockInterface|DoctrineManager
-     */
-    protected $manager;
+    protected Application $app;
+    protected BeberleiExtensionsServiceProvider $provider;
+    protected DoctrineManager $manager;
 
     public function setUp(): void
     {
@@ -34,7 +27,7 @@ class BeberleiExtensionsServiceProviderTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function test_custom_functions_can_be_registered()
+    public function testCustomFunctionsCanBeRegistered(): void
     {
         $this->manager->shouldReceive('extendAll')->once();
 

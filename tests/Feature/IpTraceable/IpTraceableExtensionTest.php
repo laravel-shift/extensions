@@ -1,12 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
+namespace LaravelDoctrineTest\Extensions\Feature\IpTraceable;
+
 use Illuminate\Http\Request;
 use LaravelDoctrine\Extensions\IpTraceable\IpTraceableExtension;
+use LaravelDoctrineTest\Extensions\Feature\TestCase;
 use Mockery as m;
 
-class IpTraceableExtensionTest extends ExtensionTestCase
+class IpTraceableExtensionTest extends TestCase
 {
-    public function test_can_register_extension()
+    public function testCanRegisterExtension(): void
     {
         $request = m::mock(Request::class);
 
@@ -14,13 +19,12 @@ class IpTraceableExtensionTest extends ExtensionTestCase
             ->once()->andReturn('127.0.0.1');
 
         $extension = new IpTraceableExtension(
-            $request
+            $request,
         );
 
         $extension->addSubscribers(
             $this->evm,
             $this->em,
-            $this->reader
         );
 
         $this->assertEmpty($extension->getFilters());

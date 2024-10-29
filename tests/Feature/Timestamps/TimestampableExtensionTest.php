@@ -1,17 +1,21 @@
 <?php
 
-use LaravelDoctrine\Extensions\Timestamps\TimestampableExtension;
+declare(strict_types=1);
 
-class TimestampableExtensionTest extends ExtensionTestCase
+namespace LaravelDoctrineTest\Extensions\Feature\Timestamps;
+
+use LaravelDoctrine\Extensions\Timestamps\TimestampableExtension;
+use LaravelDoctrineTest\Extensions\Feature\TestCase;
+
+class TimestampableExtensionTest extends TestCase
 {
-    public function test_can_register_extension()
+    public function testCanRegisterExtension(): void
     {
         $extension = new TimestampableExtension();
 
         $extension->addSubscribers(
             $this->evm,
             $this->em,
-            $this->reader
         );
 
         $this->assertEmpty($extension->getFilters());

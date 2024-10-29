@@ -1,17 +1,21 @@
 <?php
 
-use LaravelDoctrine\Extensions\Tree\TreeExtension;
+declare(strict_types=1);
 
-class TreeExtensionTest extends ExtensionTestCase
+namespace LaravelDoctrineTest\Extensions\Feature\Tree;
+
+use LaravelDoctrine\Extensions\Tree\TreeExtension;
+use LaravelDoctrineTest\Extensions\Feature\TestCase;
+
+class TreeExtensionTest extends TestCase
 {
-    public function test_can_register_extension()
+    public function testCanRegisterExtension(): void
     {
         $extension = new TreeExtension();
 
         $extension->addSubscribers(
             $this->evm,
             $this->em,
-            $this->reader
         );
 
         $this->assertEmpty($extension->getFilters());

@@ -1,21 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
+namespace LaravelDoctrineTest\Extensions\Feature\Timestamps;
+
+use DateTime;
+use LaravelDoctrineTest\Extensions\Assets\Timestamps\TimestampsEntity;
 use PHPUnit\Framework\TestCase;
-use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 
 class TimestampsTest extends TestCase
 {
-    /**
-     * @var TimestampsEntity
-     */
-    protected $entity;
+    protected TimestampsEntity $entity;
 
     public function setUp(): void
     {
         $this->entity = new TimestampsEntity();
     }
 
-    public function test_can_set_created_at()
+    public function testCanSetCreatedAt(): void
     {
         $date = new DateTime('now');
 
@@ -24,7 +26,7 @@ class TimestampsTest extends TestCase
         $this->assertEquals($date, $this->entity->getCreatedAt());
     }
 
-    public function test_can_set_updated_at()
+    public function testCanSetUpdatedAt(): void
     {
         $date = new DateTime('now');
 
@@ -32,9 +34,4 @@ class TimestampsTest extends TestCase
 
         $this->assertEquals($date, $this->entity->getUpdatedAt());
     }
-}
-
-class TimestampsEntity
-{
-    use Timestamps;
 }

@@ -1,17 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
+namespace LaravelDoctrineTest\Extensions\Feature\Uploadable;
+
 use Gedmo\Uploadable\UploadableListener;
 use LaravelDoctrine\Extensions\Uploadable\UploadableExtension;
+use LaravelDoctrineTest\Extensions\Feature\TestCase;
 use Mockery as m;
 
-class UploadableExtensionTest extends ExtensionTestCase
+class UploadableExtensionTest extends TestCase
 {
-    public function test_can_register_extension()
+    public function testCanRegisterExtension(): void
     {
         $listener = m::mock(UploadableListener::class);
 
         $extension = new UploadableExtension(
-            $listener
+            $listener,
         );
 
         $extension->addSubscribers(

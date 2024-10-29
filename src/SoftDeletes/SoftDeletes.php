@@ -9,9 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait SoftDeletes
 {
-    /** @ORM\Column(name="deleted_at", type="datetime", nullable=true) */
     #[ORM\Column(name: 'deleted_at', type: 'datetime', nullable: true)]
-    protected DateTime $deletedAt;
+    protected DateTime|null $deletedAt = null;
 
     public function getDeletedAt(): DateTime
     {
