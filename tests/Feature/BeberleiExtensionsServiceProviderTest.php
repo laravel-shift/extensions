@@ -6,6 +6,8 @@ namespace LaravelDoctrineTest\Extensions\Feature;
 
 use LaravelDoctrine\ORM\DoctrineManager;
 
+use function app;
+
 class BeberleiExtensionsServiceProviderTest extends TestCase
 {
     public function testCustomFunctionsCanBeRegistered(): void

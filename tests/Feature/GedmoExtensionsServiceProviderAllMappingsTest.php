@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace LaravelDoctrineTest\Extensions\Feature;
 
 use Illuminate\Config\Repository;
-use LaravelDoctrine\ORM\DoctrineManager;
-use Illuminate\Events\Dispatcher;
+
+use function tap;
 
 class GedmoExtensionsServiceProviderAllMappingsTest extends TestCase
 {
-    protected function defineEnvironment($app)
+    protected function defineEnvironment(mixed $app): void
     {
         // Setup default database to use sqlite :memory:
-        tap($app['config'], function (Repository $config) {
+        tap($app['config'], static function (Repository $config): void {
             $config->set('doctrine.gedmo.all_mappings', true);
         });
     }

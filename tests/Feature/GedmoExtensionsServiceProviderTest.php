@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace LaravelDoctrineTest\Extensions\Feature;
 
-use LaravelDoctrine\ORM\DoctrineManager;
-use Illuminate\Events\Dispatcher;
-
 class GedmoExtensionsServiceProviderTest extends TestCase
 {
     public function testCustomExtensionsCanBeRegistered(): void
