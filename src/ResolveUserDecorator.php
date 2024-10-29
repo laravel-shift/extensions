@@ -7,6 +7,7 @@ namespace LaravelDoctrine\Extensions;
 use Doctrine\Common\EventSubscriber;
 use Illuminate\Contracts\Auth\Guard;
 
+use function app;
 use function call_user_func;
 use function call_user_func_array;
 use function get_class;
