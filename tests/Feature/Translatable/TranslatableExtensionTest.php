@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace LaravelDoctrineTest\Extensions\Feature\Translatable;
 
-use Illuminate\Contracts\Config\Repository;
-use Illuminate\Contracts\Events\Dispatcher;
-use Illuminate\Contracts\Foundation\Application;
 use LaravelDoctrine\Extensions\Translatable\TranslatableExtension;
 use LaravelDoctrineTest\Extensions\Feature\TestCase;
-use Mockery as m;
+
+use function app;
 
 class TranslatableExtensionTest extends TestCase
 {
