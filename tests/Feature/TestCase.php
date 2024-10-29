@@ -10,6 +10,9 @@ use Mockery as m;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
+use function restore_error_handler;
+use function restore_exception_handler;
+
 abstract class TestCase extends OrchestraTestCase
 {
     use WithWorkbench;
@@ -33,6 +36,7 @@ abstract class TestCase extends OrchestraTestCase
         restore_exception_handler();
 
         m::close();
+
         parent::tearDown();
     }
 }
