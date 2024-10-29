@@ -2,14 +2,7 @@
 
 namespace LaravelDoctrine\Extensions;
 
-use Doctrine\Common\Annotations\AnnotationRegistry;
-use Doctrine\Persistence\Mapping\Driver\MappingDriverChain;
-use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
-use Gedmo\DoctrineExtensions;
 use Illuminate\Support\ServiceProvider;
-use LaravelDoctrine\Fluent\Extensions\GedmoExtensions;
-use LaravelDoctrine\Fluent\FluentDriver;
-use function method_exists;
 
 class GedmoExtensionsServiceProvider extends ServiceProvider
 {
@@ -24,80 +17,8 @@ class GedmoExtensionsServiceProvider extends ServiceProvider
 
             foreach ($registry->getManagers() as $manager) {
                 $chain = $manager->getConfiguration()->getMetadataDriverImpl();
-
-                if ($this->hasAnnotationReader($chain)) {
-                    $this->registerGedmoForAnnotations($chain);
-                }
-
-                if ($this->hasFluentDriver($chain)) {
-                    $this->registerGedmoForFluent($chain);
-                }
             }
         });
-    }
-
-    /**
-     * @param  MappingDriverChain $driver
-     * @return bool
-     */
-    private function hasAnnotationReader(MappingDriverChain $driver)
-    {
-        foreach ($driver->getDrivers() as $driver) {
-            if ($driver instanceof AnnotationDriver) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @param  MappingDriverChain $driver
-     * @return bool
-     */
-    private function hasFluentDriver(MappingDriverChain $driver)
-    {
-        foreach ($driver->getDrivers() as $driver) {
-            if ($driver instanceof FluentDriver) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @param $chain
-     */
-    private function registerGedmoForAnnotations(MappingDriverChain $chain)
-    {
-        if ($this->needsAllMappings()) {
-            DoctrineExtensions::registerMappingIntoDriverChainORM(
-                $chain,
-                $chain->getReader()
-            );
-        } else {
-            DoctrineExtensions::registerAbstractMappingIntoDriverChainORM(
-                $chain,
-                $chain->getReader()
-            );
-        }
-
-        if (method_exists(AnnotationRegistry::class, 'registerUniqueLoader')) {
-            AnnotationRegistry::registerUniqueLoader('class_exists');
-        }
-    }
-
-    /**
-     * @param MappingDriverChain $chain
-     */
-    private function registerGedmoForFluent(MappingDriverChain $chain)
-    {
-        if ($this->needsAllMappings()) {
-            GedmoExtensions::registerAll($chain);
-        } else {
-            GedmoExtensions::registerAbstract($chain);
-        }
     }
 
     /**

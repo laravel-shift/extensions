@@ -3,7 +3,6 @@
 namespace LaravelDoctrine\Extensions;
 
 use Doctrine\Common\EventSubscriber;
-use Doctrine\Common\Annotations\Reader;
 
 class ResolveUserDecorator implements EventSubscriber
 {
@@ -35,22 +34,6 @@ class ResolveUserDecorator implements EventSubscriber
     public function getSubscribedEvents()
     {
         return $this->wrapped->getSubscribedEvents();
-    }
-
-    /**
-     * Set annotation reader class
-     * since older doctrine versions do not provide an interface
-     * it must provide these methods:
-     *     getClassAnnotations([reflectionClass])
-     *     getClassAnnotation([reflectionClass], [name])
-     *     getPropertyAnnotations([reflectionProperty])
-     *     getPropertyAnnotation([reflectionProperty], [name])
-     *
-     * @param Reader $reader - annotation reader class
-     */
-    public function setAnnotationReader($reader)
-    {
-        $this->wrapped->setAnnotationReader($reader);
     }
 
     /**
@@ -89,7 +72,7 @@ class ResolveUserDecorator implements EventSubscriber
     {
         return get_class($this->wrapped);
     }
-    
+
     /**
     * Get current Auth manager.
     *

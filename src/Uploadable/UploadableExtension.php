@@ -2,7 +2,6 @@
 
 namespace LaravelDoctrine\Extensions\Uploadable;
 
-use Doctrine\Common\Annotations\Reader;
 use Doctrine\Common\EventManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Gedmo\Uploadable\UploadableListener;
@@ -26,17 +25,16 @@ class UploadableExtension extends GedmoExtension
     /**
      * @param EventManager           $manager
      * @param EntityManagerInterface $em
-     * @param Reader                 $reader
      */
-    public function addSubscribers(EventManager $manager, EntityManagerInterface $em, Reader $reader = null)
+    public function addSubscribers(EventManager $manager, EntityManagerInterface $em): void
     {
-        $this->addSubscriber($this->listener, $manager, $reader);
+        $this->addSubscriber($this->listener, $manager);
     }
 
     /**
-     * @return array
+     * @return mixed[]
      */
-    public function getFilters()
+    public function getFilters(): array
     {
         return [];
     }

@@ -9,7 +9,6 @@ class UploadableExtensionTest extends ExtensionTestCase
     public function test_can_register_extension()
     {
         $listener = m::mock(UploadableListener::class);
-        $listener->shouldReceive('setAnnotationReader')->with($this->reader)->once();
 
         $extension = new UploadableExtension(
             $listener
@@ -18,7 +17,6 @@ class UploadableExtensionTest extends ExtensionTestCase
         $extension->addSubscribers(
             $this->evm,
             $this->em,
-            $this->reader
         );
 
         $this->assertEmpty($extension->getFilters());

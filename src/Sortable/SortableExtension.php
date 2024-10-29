@@ -2,7 +2,6 @@
 
 namespace LaravelDoctrine\Extensions\Sortable;
 
-use Doctrine\Common\Annotations\Reader;
 use Doctrine\Common\EventManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Gedmo\Sortable\SortableListener;
@@ -13,19 +12,18 @@ class SortableExtension extends GedmoExtension
     /**
      * @param EventManager           $manager
      * @param EntityManagerInterface $em
-     * @param Reader                 $reader
      */
-    public function addSubscribers(EventManager $manager, EntityManagerInterface $em, Reader $reader = null)
+    public function addSubscribers(EventManager $manager, EntityManagerInterface $em): void
     {
         $subscriber = new SortableListener();
 
-        $this->addSubscriber($subscriber, $manager, $reader);
+        $this->addSubscriber($subscriber, $manager);
     }
 
     /**
-     * @return array
+     * @return mixed[]
      */
-    public function getFilters()
+    public function getFilters(): array
     {
         return [];
     }
