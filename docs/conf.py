@@ -10,11 +10,11 @@ extensions = []
 templates_path = ['_templates']
 source_suffix = '.rst'
 master_doc = 'index'
-project = u'Laravel Doctrine ORM Extensions'
+project = u'Laravel Doctrine Extensions'
 copyright = u'2024 laraveldoctrine.org'
 version = '9'
-html_title = "Extensions for Laravel and Doctrine ORM"
-html_short_title = "Laravel Doctrine ORM Extensions"
+html_title = "Extensions for Laravel and Doctrine"
+html_short_title = "Laravel Doctrine Extensions"
 html_favicon = 'favicon.ico'
 
 exclude_patterns = ['_build']
