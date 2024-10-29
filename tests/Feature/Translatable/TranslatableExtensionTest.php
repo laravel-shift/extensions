@@ -15,25 +15,10 @@ class TranslatableExtensionTest extends TestCase
 {
     public function testCanRegisterExtension(): void
     {
-        $app = m::mock(Application::class);
-        $app->shouldReceive('getLocale')->once()->andReturn('en');
+        $extension = app(TranslatableExtension::class);
+        $extension->addSubscribers($this->evm, $this->em);
 
-        $config = m::mock(Repository::class);
-        $config->shouldReceive('get')
-               ->with('app.locale')->once()
-               ->andReturn('en');
-
-        $events = m::mock(Dispatcher::class);
-        $events->shouldReceive('listen')
-            ->with('locale.changed', m::type('callable'))
-            ->once();
-
-        $extension = new TranslatableExtension($app, $config, $events);
-
-        $extension->addSubscribers(
-            $this->evm,
-            $this->em,
-        );
+        $this->app['events']->dispatch('locale.changed', ['en']);
 
         $this->assertEmpty($extension->getFilters());
     }
