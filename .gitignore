@@ -6,3 +6,5 @@ composer.lock
 .phpunit.result.cache
 .idea
 laravel-doctrine-orm.iml
+.phpcs-cache
+.phpunit.cache

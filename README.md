@@ -1,6 +1,5 @@
-# Laravel Doctrine Extensions
-
-<img src="https://cloud.githubusercontent.com/assets/7728097/12727207/2cbfc34c-c91c-11e5-9f10-529dc99feb84.jpg"/>
+Laravel Doctrine Extensions
+===========================
 
 [![GitHub release](https://img.shields.io/github/release/laravel-doctrine/extensions.svg?style=flat-square)](https://packagist.org/packages/laravel-doctrine/extensions)
 [![Github actions](https://github.com/laravel-doctrine/extensions/workflows/CI/badge.svg?branch=1.x)](https://github.com/laravel-doctrine/extensions/actions?query=workflow%3ACI+branch%3A1.x)
@@ -9,7 +8,9 @@
 
 *Behavioral and Query/Type Extensions for Laravel Doctrine*
 
-**Gedmo Extensions:**
+Gedmo Extensions
+----------------
+
 * Blameable
 * IpTraceable
 * Loggable
@@ -21,7 +22,9 @@
 * Tree
 * Uploadable
 
-**Beberlei Extensions:**
+Beberlei Extensions
+-------------------
+
 * Custom datetime functions
 * Custom numeric functions
 * Custom string functions

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelDoctrine\Extensions\Timestamps;
 
 use DateTime;
@@ -10,50 +12,38 @@ trait Timestamps
 {
     /**
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     *
      * @Gedmo\Timestampable(on="create")
-     * @var DateTime
      */
     #[ORM\Column(name: 'created_at', type: 'datetime', nullable: false)]
     #[Gedmo\Timestampable(on: 'create')]
-    protected $createdAt;
+    protected DateTime $createdAt;
 
     /**
      * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     *
      * @Gedmo\Timestampable(on="update")
-     * @var DateTime
      */
     #[ORM\Column(name: 'updated_at', type: 'datetime', nullable: false)]
     #[Gedmo\Timestampable(on: 'update')]
-    protected $updatedAt;
+    protected DateTime $updatedAt;
 
-    /**
-     * @return DateTime
-     */
-    public function getCreatedAt()
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return DateTime
-     */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param DateTime $createdAt
-     */
-    public function setCreatedAt(DateTime $createdAt)
+    public function setCreatedAt(DateTime $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
 
-    /**
-     * @param DateTime $updatedAt
-     */
-    public function setUpdatedAt(DateTime $updatedAt)
+    public function setUpdatedAt(DateTime $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelDoctrine\Extensions\Tree;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -8,101 +10,77 @@ use Gedmo\Mapping\Annotation as Gedmo;
 trait NestedSet
 {
     /**
-     * @var int
-     * @Gedmo\TreeRoot
      * @ORM\Column(name="root", type="integer", nullable=true)
+     *
+     * @Gedmo\TreeRoot
      */
     #[Gedmo\TreeRoot]
     #[ORM\Column(name: 'root', type: 'integer', nullable: true)]
-    protected $root;
+    protected int $root;
 
     /**
-     * @var int
-     * @Gedmo\TreeLevel
      * @ORM\Column(name="lvl", type="integer")
+     *
+     * @Gedmo\TreeLevel
      */
     #[Gedmo\TreeLevel]
     #[ORM\Column(name: 'lvl', type: 'integer')]
-    protected $level;
+    protected int $level;
 
     /**
-     * @var int
-     * @Gedmo\TreeLeft
      * @ORM\Column(name="lft", type="integer")
+     *
+     * @Gedmo\TreeLeft
      */
     #[Gedmo\TreeLeft]
     #[ORM\Column(name: 'lft', type: 'integer')]
-    protected $left;
+    protected int $left;
 
     /**
-     * @var int
-     * @Gedmo\TreeRight
      * @ORM\Column(name="rgt", type="integer")
+     *
+     * @Gedmo\TreeRight
      */
     #[Gedmo\TreeRight]
     #[ORM\Column(name: 'rgt', type: 'integer')]
-    protected $right;
+    protected int $right;
 
-    /**
-     * @return int
-     */
-    public function getRoot()
+    public function getRoot(): int
     {
         return $this->root;
     }
 
-    /**
-     * @param int $root
-     */
-    public function setRoot($root)
+    public function setRoot(int $root): void
     {
         $this->root = $root;
     }
 
-    /**
-     * @return int
-     */
-    public function getLevel()
+    public function getLevel(): int
     {
         return $this->level;
     }
 
-    /**
-     * @param int $level
-     */
-    public function setLevel($level)
+    public function setLevel(int $level): void
     {
         $this->level = $level;
     }
 
-    /**
-     * @return int
-     */
-    public function getLeft()
+    public function getLeft(): int
     {
         return $this->left;
     }
 
-    /**
-     * @param int $left
-     */
-    public function setLeft($left)
+    public function setLeft(int $left): void
     {
         $this->left = $left;
     }
 
-    /**
-     * @return int
-     */
-    public function getRight()
+    public function getRight(): int
     {
         return $this->right;
     }
 
-    /**
-     * @param int $right
-     */
-    public function setRight($right)
+    public function setRight(int $right): void
     {
         $this->right = $right;
     }

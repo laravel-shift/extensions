@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelDoctrine\Extensions\Loggable;
 
-use Doctrine\Common\Annotations\Reader;
 use Doctrine\Common\EventManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Gedmo\Loggable\LoggableListener;
@@ -11,26 +12,18 @@ use LaravelDoctrine\Extensions\ResolveUserDecorator;
 
 class LoggableExtension extends GedmoExtension
 {
-
-    /**
-     * @param EventManager           $manager
-     * @param EntityManagerInterface $em
-     * @param Reader                 $reader
-     */
-    public function addSubscribers(EventManager $manager, EntityManagerInterface $em, Reader $reader = null)
+    public function addSubscribers(EventManager $manager, EntityManagerInterface $em): void
     {
         $subscriber = new ResolveUserDecorator(
-            new LoggableListener,
-            'setUsername'
+            new LoggableListener(),
+            'setUsername',
         );
 
-        $this->addSubscriber($subscriber, $manager, $reader);
+        $this->addSubscriber($subscriber, $manager);
     }
 
-    /**
-     * @return array
-     */
-    public function getFilters()
+    /** @return mixed[] */
+    public function getFilters(): array
     {
         return [];
     }
