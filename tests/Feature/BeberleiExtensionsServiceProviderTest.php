@@ -25,6 +25,8 @@ class BeberleiExtensionsServiceProviderTest extends TestCase
 
         // silence the 'This test did not perform any assertions' warning
         $this->assertTrue(true);
+
+        parent::setUp();
     }
 
     public function testCustomFunctionsCanBeRegistered(): void
@@ -32,10 +34,5 @@ class BeberleiExtensionsServiceProviderTest extends TestCase
         $this->manager->shouldReceive('extendAll')->once();
 
         $this->provider->boot($this->manager);
-    }
-
-    public function tearDown(): void
-    {
-        m::close();
     }
 }

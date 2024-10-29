@@ -17,9 +17,9 @@ abstract class TestCase extends PHPUnitTestCase
     public function setUp(): void
     {
         $this->evm = m::mock(EventManager::class);
-        $this->evm->shouldReceive('addEventSubscriber')->once();
+        $this->em  = m::mock(EntityManagerInterface::class);
 
-        $this->em = m::mock(EntityManagerInterface::class);
+        $this->evm->shouldReceive('addEventSubscriber')->once();
     }
 
     public function tearDown(): void
