@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LaravelDoctrine\Extensions;
 
+use Gedmo\DoctrineExtensions;
 use Illuminate\Support\ServiceProvider;
 
 class GedmoExtensionsServiceProvider extends ServiceProvider
@@ -18,6 +19,12 @@ class GedmoExtensionsServiceProvider extends ServiceProvider
 
             foreach ($registry->getManagers() as $manager) {
                 $chain = $manager->getConfiguration()->getMetadataDriverImpl();
+
+                if ($this->needsAllMappings()) {
+                    DoctrineExtensions::registerMappingIntoDriverChainORM($chain);
+                } else {
+                    DoctrineExtensions::registerAbstractMappingIntoDriverChainORM($chain);
+                }
             }
         });
     }
