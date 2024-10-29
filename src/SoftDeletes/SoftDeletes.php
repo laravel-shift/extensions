@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelDoctrine\Extensions\SoftDeletes;
 
 use DateTime;
@@ -7,25 +9,16 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait SoftDeletes
 {
-    /**
-     * @ORM\Column(name="deleted_at", type="datetime", nullable=true)
-     * @var DateTime
-     */
+    /** @ORM\Column(name="deleted_at", type="datetime", nullable=true) */
     #[ORM\Column(name: 'deleted_at', type: 'datetime', nullable: true)]
-    protected $deletedAt;
+    protected DateTime $deletedAt;
 
-    /**
-     * @return DateTime
-     */
-    public function getDeletedAt()
+    public function getDeletedAt(): DateTime
     {
         return $this->deletedAt;
     }
 
-    /**
-     * @param DateTime|null $deletedAt
-     */
-    public function setDeletedAt(DateTime $deletedAt = null)
+    public function setDeletedAt(DateTime|null $deletedAt = null): void
     {
         $this->deletedAt = $deletedAt;
     }
@@ -33,15 +26,12 @@ trait SoftDeletes
     /**
      * Restore the soft-deleted state
      */
-    public function restore()
+    public function restore(): void
     {
         $this->deletedAt = null;
     }
 
-    /**
-     * @return bool
-     */
-    public function isDeleted()
+    public function isDeleted(): bool
     {
         return $this->deletedAt && new DateTime('now') >= $this->deletedAt;
     }

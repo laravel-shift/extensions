@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelDoctrine\Extensions\IpTraceable;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -8,31 +10,29 @@ use Gedmo\Mapping\Annotation as Gedmo;
 trait IpTraceable
 {
     /**
-     * @var string
-     * @Gedmo\IpTraceable(on="create")
      * @ORM\Column(length=45, nullable=true)
+     *
+     * @Gedmo\IpTraceable(on="create")
      */
     #[Gedmo\IpTraceable(on: 'create')]
     #[ORM\Column(length: 45, nullable: true)]
-    protected $createdFromIp;
+    protected string $createdFromIp;
 
     /**
-     * @var string
-     * @Gedmo\IpTraceable(on="update")
      * @ORM\Column(length=45, nullable=true)
+     *
+     * @Gedmo\IpTraceable(on="update")
      */
     #[Gedmo\IpTraceable(on: 'update')]
     #[ORM\Column(length: 45, nullable: true)]
-    protected $updatedFromIp;
+    protected string $updatedFromIp;
 
     /**
      * Sets createdFromIp.
      *
-     * @param string $createdFromIp
-     *
      * @return $this
      */
-    public function setCreatedFromIp($createdFromIp)
+    public function setCreatedFromIp(string $createdFromIp)
     {
         $this->createdFromIp = $createdFromIp;
 
@@ -41,9 +41,8 @@ trait IpTraceable
 
     /**
      * Returns createdFromIp.
-     * @return string
      */
-    public function getCreatedFromIp()
+    public function getCreatedFromIp(): string
     {
         return $this->createdFromIp;
     }
@@ -51,11 +50,9 @@ trait IpTraceable
     /**
      * Sets updatedFromIp.
      *
-     * @param string $updatedFromIp
-     *
      * @return $this
      */
-    public function setUpdatedFromIp($updatedFromIp)
+    public function setUpdatedFromIp(string $updatedFromIp)
     {
         $this->updatedFromIp = $updatedFromIp;
 
@@ -64,9 +61,8 @@ trait IpTraceable
 
     /**
      * Returns updatedFromIp.
-     * @return string
      */
-    public function getUpdatedFromIp()
+    public function getUpdatedFromIp(): string
     {
         return $this->updatedFromIp;
     }

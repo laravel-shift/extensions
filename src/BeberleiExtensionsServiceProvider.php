@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelDoctrine\Extensions;
 
 use Doctrine\ORM\Configuration;
@@ -9,10 +11,8 @@ use LaravelDoctrine\ORM\DoctrineManager;
 
 class BeberleiExtensionsServiceProvider extends ServiceProvider
 {
-    /**
-     * @var array
-     */
-    protected $datetime = [
+    /** @var mixed[]  */
+    protected array $datetime = [
         'DATE'              => Mysql\Date::class,
         'DATE_FORMAT'       => Mysql\DateFormat::class,
         'DATEADD'           => Mysql\DateAdd::class,
@@ -33,13 +33,11 @@ class BeberleiExtensionsServiceProvider extends ServiceProvider
         'TIMESTAMPDIFF'     => Mysql\TimestampDiff::class,
         'WEEK'              => Mysql\Week::class,
         'WEEKDAY'           => Mysql\WeekDay::class,
-        'YEAR'              => Mysql\Year::class
+        'YEAR'              => Mysql\Year::class,
     ];
 
-    /**
-     * @var array
-     */
-    protected $numeric = [
+    /** @var mixed[]  */
+    protected array $numeric = [
         'ACOS'              => Mysql\Acos::class,
         'ASIN'              => Mysql\Asin::class,
         'ATAN'              => Mysql\Atan::class,
@@ -65,13 +63,11 @@ class BeberleiExtensionsServiceProvider extends ServiceProvider
         'SIN'               => Mysql\Sin::class,
         'STD'               => Mysql\Std::class,
         'TAN'               => Mysql\Tan::class,
-        'UUID_SHORT'        => Mysql\UuidShort::class
+        'UUID_SHORT'        => Mysql\UuidShort::class,
     ];
 
-    /**
-     * @var array
-     */
-    protected $string = [
+    /** @var mixed[]  */
+    protected array $string = [
         'ASCII'             => Mysql\Ascii::class,
         'CHAR_LENGTH'       => Mysql\CharLength::class,
         'CONCAT_WS'         => Mysql\ConcatWs::class,
@@ -84,17 +80,15 @@ class BeberleiExtensionsServiceProvider extends ServiceProvider
         'SHA1'              => Mysql\Sha1::class,
         'SHA2'              => Mysql\Sha2::class,
         'SOUNDEX'           => Mysql\Soundex::class,
-        'SUBSTRING_INDEX'   => Mysql\SubstringIndex::class
+        'SUBSTRING_INDEX'   => Mysql\SubstringIndex::class,
     ];
 
     /**
      * Register the metadata
-     *
-     * @param DoctrineManager $manager
      */
-    public function boot(DoctrineManager $manager)
+    public function boot(DoctrineManager $manager): void
     {
-        $manager->extendAll(function (Configuration $configuration) {
+        $manager->extendAll(function (Configuration $configuration): void {
             $configuration->setCustomDatetimeFunctions($this->datetime);
             $configuration->setCustomNumericFunctions($this->numeric);
             $configuration->setCustomStringFunctions($this->string);
@@ -103,9 +97,8 @@ class BeberleiExtensionsServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelDoctrine\Extensions\IpTraceable;
 
 use Doctrine\Common\EventManager;
@@ -10,23 +12,10 @@ use LaravelDoctrine\Extensions\GedmoExtension;
 
 class IpTraceableExtension extends GedmoExtension
 {
-    /**
-     * @var Request
-     */
-    protected $request;
-
-    /**
-     * @param Request $request
-     */
-    public function __construct(Request $request)
+    public function __construct(protected Request $request)
     {
-        $this->request = $request;
     }
 
-    /**
-     * @param EventManager           $manager
-     * @param EntityManagerInterface $em
-     */
     public function addSubscribers(EventManager $manager, EntityManagerInterface $em): void
     {
         $subscriber = new IpTraceableListener();
@@ -35,9 +24,7 @@ class IpTraceableExtension extends GedmoExtension
         $this->addSubscriber($subscriber, $manager);
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     public function getFilters(): array
     {
         return [];

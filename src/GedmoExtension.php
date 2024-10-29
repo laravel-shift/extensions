@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelDoctrine\Extensions;
 
 use Doctrine\Common\EventManager;
@@ -8,10 +10,6 @@ use LaravelDoctrine\ORM\Extensions\Extension as ExtensionContract;
 
 abstract class GedmoExtension implements ExtensionContract
 {
-    /**
-     * @param EventSubscriber $subscriber
-     * @param EventManager    $manager
-     */
     protected function addSubscriber(EventSubscriber $subscriber, EventManager $manager): void
     {
         $manager->addEventSubscriber($subscriber);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelDoctrine\Extensions\Uploadable;
 
 use Gedmo\Uploadable\UploadableListener;
@@ -9,10 +11,8 @@ class UploadableExtensionServiceProvider extends ServiceProvider
 {
     /**
      * Register the service provider.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->singleton(UploadableListener::class);
     }

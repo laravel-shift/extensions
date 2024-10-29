@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelDoctrine\Extensions\Uploadable;
 
 use Gedmo\Uploadable\UploadableListener;
@@ -9,10 +11,8 @@ class UploadableFacade extends Facade
 {
     /**
      * Get the registered name of the component.
-     *
-     * @return string
      */
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return UploadableListener::class;
     }

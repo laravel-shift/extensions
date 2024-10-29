@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelDoctrine\Extensions\Blameable;
 
 use Doctrine\Common\EventManager;
@@ -10,23 +12,17 @@ use LaravelDoctrine\Extensions\ResolveUserDecorator;
 
 class BlameableExtension extends GedmoExtension
 {
-    /**
-     * @param EventManager           $manager
-     * @param EntityManagerInterface $em
-     */
     public function addSubscribers(EventManager $manager, EntityManagerInterface $em): void
     {
         $subscriber = new ResolveUserDecorator(
             new BlameableListener(),
-            'setUserValue'
+            'setUserValue',
         );
 
         $this->addSubscriber($subscriber, $manager);
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     public function getFilters(): array
     {
         return [];

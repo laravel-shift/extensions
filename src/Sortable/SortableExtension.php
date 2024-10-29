@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelDoctrine\Extensions\Sortable;
 
 use Doctrine\Common\EventManager;
@@ -9,10 +11,6 @@ use LaravelDoctrine\Extensions\GedmoExtension;
 
 class SortableExtension extends GedmoExtension
 {
-    /**
-     * @param EventManager           $manager
-     * @param EntityManagerInterface $em
-     */
     public function addSubscribers(EventManager $manager, EntityManagerInterface $em): void
     {
         $subscriber = new SortableListener();
@@ -20,9 +18,7 @@ class SortableExtension extends GedmoExtension
         $this->addSubscriber($subscriber, $manager);
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     public function getFilters(): array
     {
         return [];

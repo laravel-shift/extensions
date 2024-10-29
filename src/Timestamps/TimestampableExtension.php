@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelDoctrine\Extensions\Timestamps;
 
 use Doctrine\Common\EventManager;
@@ -9,20 +11,14 @@ use LaravelDoctrine\Extensions\GedmoExtension;
 
 class TimestampableExtension extends GedmoExtension
 {
-    /**
-     * @param EventManager           $manager
-     * @param EntityManagerInterface $em
-     */
     public function addSubscribers(EventManager $manager, EntityManagerInterface $em): void
     {
-        $subscriber = new TimestampableListener;
+        $subscriber = new TimestampableListener();
 
         $this->addSubscriber($subscriber, $manager);
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     public function getFilters(): array
     {
         return [];

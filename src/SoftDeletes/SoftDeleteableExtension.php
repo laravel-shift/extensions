@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaravelDoctrine\Extensions\SoftDeletes;
 
 use Doctrine\Common\EventManager;
@@ -10,10 +12,6 @@ use LaravelDoctrine\Extensions\GedmoExtension;
 
 class SoftDeleteableExtension extends GedmoExtension
 {
-    /**
-     * @param EventManager           $manager
-     * @param EntityManagerInterface $em
-     */
     public function addSubscribers(EventManager $manager, EntityManagerInterface $em): void
     {
         $subscriber = new SoftDeleteableListener();
@@ -21,13 +19,11 @@ class SoftDeleteableExtension extends GedmoExtension
         $this->addSubscriber($subscriber, $manager);
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     public function getFilters(): array
     {
         return [
-            'soft-deleteable' => SoftDeleteableFilter::class
+            'soft-deleteable' => SoftDeleteableFilter::class,
         ];
     }
 }
