@@ -1,4 +1,5 @@
 providers:
+  - LaravelDoctrine\ORM\DoctrineServiceProvider
   - LaravelDoctrine\Extensions\BeberleiExtensionsServiceProvider
   - LaravelDoctrine\Extensions\GedmoExtensionsServiceProvider
 

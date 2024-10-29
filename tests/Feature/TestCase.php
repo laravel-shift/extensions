@@ -25,7 +25,7 @@ abstract class TestCase extends OrchestraTestCase
         $this->evm = m::mock(EventManager::class);
         $this->em  = m::mock(EntityManagerInterface::class);
 
-        $this->evm->shouldReceive('addEventSubscriber')->once();
+        $this->evm->shouldReceive('addEventSubscriber');
 
         parent::setUp();
     }
