@@ -30,9 +30,9 @@
         "laravel-doctrine/orm": "^3.0"
     },
     "require-dev": {
-        "beberlei/doctrineextensions": "^1.0",
+        "beberlei/doctrineextensions": "^1.5",
         "doctrine/coding-standard": "^12.0",
-        "gedmo/doctrine-extensions": "^2.4 | ^3.0",
+        "gedmo/doctrine-extensions": "^3.17",
         "laravel/framework": "^10.0 || ^11.0",
         "mockery/mockery": "^1.6",
         "php-parallel-lint/php-parallel-lint": "^1.4",
