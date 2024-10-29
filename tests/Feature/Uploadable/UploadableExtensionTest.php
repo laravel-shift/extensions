@@ -14,7 +14,7 @@ class UploadableExtensionTest extends TestCase
 {
     public function testCanRegisterExtension(): void
     {
-        $this->assertFalse(UploadableFacade::isFake());
+        $this->assertInstanceOf(UploadableListener::class, UploadableFacade::getFacadeRoot());
 
         $listener = m::mock(UploadableListener::class);
 
