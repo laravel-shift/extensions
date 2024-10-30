@@ -4,17 +4,14 @@ declare(strict_types=1);
 
 namespace LaravelDoctrineTest\Extensions\Feature\Gedmo;
 
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Guard;
 use LaravelDoctrine\Extensions\Blameable\BlameableExtension;
 use LaravelDoctrineTest\Extensions\Assets\User;
 use LaravelDoctrineTest\Extensions\Entity\Blameable;
 use LaravelDoctrineTest\Extensions\Feature\TestCase;
-use Mockery as m;
 
 class BlameableExtensionTest extends TestCase
 {
-    public function testCanRegisterExtension(): void
+    public function testExtensionWorks(): void
     {
         $user = new User();
 
