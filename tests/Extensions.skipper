@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<skipper version="3.3.7.1828" mvc="Without MVC" orm="Doctrine2" name="Extensions" uuid="dce0675c-f0d7-41fe-9ea8-a0b4cd7d53bc">
+  <module name="\Laravel Doctrine Extensions" local-name="Laravel Doctrine Extensions" namespace="\LaravelDoctrineTest\Extensions\Entity" local-namespace="\LaravelDoctrineTest\Extensions\Entity" export-format="Doctrine2PhpAttributes" export-path="Entity" uuid="a80102c9-c513-4b6b-9f65-8eff2dc489fd">
+    <entity name="\LaravelDoctrineTest\Extensions\Entity\Artist" local-name="Artist" namespace="\LaravelDoctrineTest\Extensions\Entity" uuid="6e407de8-f303-4ba7-b029-c7a7d9192fbd">
+      <field name="id" type="bigint" required="true" unique="true" primary="true" auto-increment="true" uuid="bfa7009a-d0a1-4866-a92f-f5b06adec1a8"/>
+      <field name="name" type="string" required="true" unique="true" uuid="af58be58-5844-4f31-8232-8f0f55741148"/>
+      <field name="createdAt" type="datetime_immutable" required="true" uuid="21bb59e4-3272-4dbb-befe-f51117130032"/>
+      <field name="updatedAt" type="datetime" required="true" uuid="2f445bd4-39b5-41de-914a-b76af2aa1d23"/>
+      <orm-attributes>
+        <attribute name="Gedmo">
+          <attribute name="Timestampable">
+            <attribute name="Fields">
+              <attribute name="Field">
+                <attribute name="Field">createdAt</attribute>
+                <attribute name="On">create</attribute>
+                <attribute name="Name">createdAt</attribute>
+              </attribute>
+              <attribute name="Field">
+                <attribute name="Field">updatedAt</attribute>
+                <attribute name="Name">updatedAt</attribute>
+                <attribute name="On">update</attribute>
+              </attribute>
+            </attribute>
+          </attribute>
+        </attribute>
+      </orm-attributes>
+    </entity>
+    <entity name="\LaravelDoctrineTest\Extensions\Entity\Performance" local-name="Performance" namespace="\LaravelDoctrineTest\Extensions\Entity" uuid="18b21996-0e60-42fe-b539-73ca84ecea18">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="a373cd69-e6bb-451e-b194-02bec989344f"/>
+      <field name="artist_id" type="bigint" required="true" uuid="06567b5b-13de-4722-9ce6-a4bd658ef68b"/>
+      <field name="venue" type="string" uuid="5d0ee3f4-fe3a-4824-94ca-d7e25e869264"/>
+      <field name="city" type="string" uuid="7c2bd586-3e62-4596-84e6-d8fb6ce9cfce"/>
+      <field name="state" type="string" uuid="bd8974b6-6e8c-4617-80ab-14212d63e4b4"/>
+      <field name="performanceDate" type="date" required="true" uuid="5c32bcf2-8742-43f6-a11c-1a2560e0c5d3"/>
+    </entity>
+    <association from="\LaravelDoctrineTest\Extensions\Entity\Performance" to="\LaravelDoctrineTest\Extensions\Entity\Artist" caption="artist performances" owner-alias="performances" inverse-alias="artist" many-owner="true" many-inverse="false" parent-required="true" uuid="7a3107e9-171c-4cbe-8e5d-501322c50c27">
+      <association-field from="artist_id" to="id" uuid="a76cfeeb-b958-4b2c-877e-9b1966a9f444"/>
+    </association>
+    <entity name="\LaravelDoctrineTest\Extensions\Entity\Recording" local-name="Recording" namespace="\LaravelDoctrineTest\Extensions\Entity" uuid="6f487cca-9554-4654-b554-77ec195cd789">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="51cfe499-d017-4004-8f1f-6c75016df08e"/>
+      <field name="performance_id" type="integer" required="true" uuid="17347a9e-ccab-4983-8ce9-0d8f74c9057b"/>
+      <field name="source" type="text" required="true" uuid="bf3ca36b-7ad3-4158-99f1-3bba4d5b5ced"/>
+    </entity>
+    <association from="\LaravelDoctrineTest\Extensions\Entity\Recording" to="\LaravelDoctrineTest\Extensions\Entity\Performance" caption="performance recordings" owner-alias="recordings" inverse-alias="performance" many-owner="true" many-inverse="false" parent-required="true" uuid="55e59d6a-99a2-424a-aa95-98d151254121">
+      <association-field from="performance_id" to="id" uuid="e7069b8a-efbc-49cc-addb-da4fcb26fdae"/>
+    </association>
+    <entity name="\LaravelDoctrineTest\Extensions\Entity\User" local-name="User" namespace="\LaravelDoctrineTest\Extensions\Entity" uuid="07972266-51a3-4519-b0c1-941675fc27a5">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="c4fa0bb8-1537-4c54-abd0-bcead57088d0"/>
+      <field name="name" type="string" required="true" uuid="17cab991-b0c2-471a-aff8-f76c94111683"/>
+      <field name="email" type="string" required="true" unique="true" uuid="88a27b25-bc13-4013-9229-ad2355c75fa1"/>
+      <field name="password" type="string" required="true" uuid="035153a1-dd76-4679-88c4-c81581a8dbb7"/>
+      <field name="role" type="string" enum-values="" required="true" uuid="9e47b6f1-0e1e-456e-a9f1-bc1d3e6c0e3b"/>
+    </entity>
+    <entity name="\LaravelDoctrineTest\Extensions\Entity\RecordingToUser" local-name="RecordingToUser" namespace="\LaravelDoctrineTest\Extensions\Entity" uuid="074e8071-239f-49f9-979e-73f4b1afd3b8">
+      <field name="user_id" type="integer" required="true" primary="true" uuid="a1f94945-6553-4159-af2c-e1e50c02e773"/>
+      <field name="recording_id" type="integer" required="true" primary="true" uuid="7f9027cd-12b4-4d00-a0fd-6dd1eb3f17f3"/>
+    </entity>
+    <many-to-many mn-entity="\LaravelDoctrineTest\Extensions\Entity\RecordingToUser" caption="recordings users" uuid="b65682ef-b1f8-4536-a6ac-b526501843a1">
+      <many-to-many-entity name="\LaravelDoctrineTest\Extensions\Entity\User" owning-side="true" alias="users" uuid="eba309a0-30c8-4593-aa57-d83ce4be7be2">
+        <many-to-many-field from="user_id" to="id" uuid="56b2ad55-5db0-4787-9a93-7d3b494160cb"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="\LaravelDoctrineTest\Extensions\Entity\Recording" owning-side="false" alias="recordings" uuid="0223353b-6d56-4759-bd03-04142d9e2ee1">
+        <many-to-many-field from="recording_id" to="id" uuid="3dbaa365-2408-43c1-94a7-8d866f178805"/>
+      </many-to-many-entity>
+    </many-to-many>
+    <entity name="\LaravelDoctrineTest\Extensions\Entity\Timestamps" local-name="Timestamps" namespace="\LaravelDoctrineTest\Extensions\Entity" uuid="b3465022-3f32-43ce-9583-5d31fc829fd0">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="4537c58e-236b-4c5e-97dc-08841baa4aad"/>
+      <field name="createdAt" type="datetime_immutable" required="true" uuid="73301e32-5d6f-4b8d-b8a8-34a21a842a6b"/>
+      <field name="updatedAt" type="datetime" required="true" uuid="4e30aa64-323b-47eb-a8c7-056eaa1bf2cc"/>
+      <orm-attributes>
+        <attribute name="Gedmo">
+          <attribute name="Timestampable">
+            <attribute name="Fields">
+              <attribute name="Field">
+                <attribute name="Field">createdAt</attribute>
+                <attribute name="Name">createdAt</attribute>
+                <attribute name="On">create</attribute>
+              </attribute>
+              <attribute name="Field">
+                <attribute name="Field">updatedAt</attribute>
+                <attribute name="Name">updatedAt</attribute>
+                <attribute name="On">update</attribute>
+              </attribute>
+            </attribute>
+          </attribute>
+        </attribute>
+      </orm-attributes>
+    </entity>
+    <entity name="\LaravelDoctrineTest\Extensions\Entity\IpTraceable" local-name="IpTraceable" namespace="\LaravelDoctrineTest\Extensions\Entity" uuid="0694655a-1603-49f9-9ed7-9878b5d10547">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="24819aff-b35e-4af1-9d45-94aeb9f90006"/>
+      <field name="createdFromIp" type="string" required="true" uuid="1f4117a0-bd1a-43a9-9298-e8c5f1a00520"/>
+      <field name="updatedFromIp" type="string" required="true" uuid="8fdc32cc-05db-4826-8825-be2c7d9ea3c7"/>
+      <orm-attributes>
+        <attribute name="Gedmo">
+          <attribute name="IpTraceable">
+            <attribute name="Fields">
+              <attribute name="Field">
+                <attribute name="Field">createdFromIp</attribute>
+                <attribute name="Name">createdFromIp</attribute>
+                <attribute name="On">create</attribute>
+              </attribute>
+              <attribute name="Field">
+                <attribute name="Field">updatedFromIp</attribute>
+                <attribute name="Name">updatedFromIp</attribute>
+                <attribute name="On">update</attribute>
+              </attribute>
+            </attribute>
+          </attribute>
+        </attribute>
+      </orm-attributes>
+    </entity>
+    <entity name="\LaravelDoctrineTest\Extensions\Entity\Blameable" local-name="Blameable" namespace="\LaravelDoctrineTest\Extensions\Entity" uuid="75c7ffe8-aafc-496f-9563-d3b991ec98d1">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="f0045bfd-3406-4408-93ca-d89a257da212"/>
+      <field name="createdBy" type="string" required="true" uuid="ba07eef3-205b-4e31-adb2-a0ff4c675716"/>
+      <field name="updatedBy" type="string" required="true" uuid="71c6025b-7e4d-4660-acf6-633c1e9106d6"/>
+      <orm-attributes>
+        <attribute name="Gedmo">
+          <attribute name="Blameable">
+            <attribute name="Fields">
+              <attribute name="Field">
+                <attribute name="Field">updatedBy</attribute>
+                <attribute name="Name">updatedBy</attribute>
+                <attribute name="On">update</attribute>
+              </attribute>
+              <attribute name="Field">
+                <attribute name="Field">createdBy</attribute>
+                <attribute name="Name">createdBy</attribute>
+                <attribute name="On">create</attribute>
+              </attribute>
+            </attribute>
+          </attribute>
+        </attribute>
+      </orm-attributes>
+    </entity>
+    <comment caption="Author" description="Tom H Anderson&#10;&lt;tom.h.anderson@gmail.com&gt;" uuid="7b264ce1-9604-430f-913a-6ef252d5469b"/>
+    <orm-attributes>
+      <attribute name="db-naming-strategy">default</attribute>
+      <attribute name="filename-format">entity-name-only</attribute>
+    </orm-attributes>
+  </module>
+  <visual-data>
+    <association uuid="55e59d6a-99a2-424a-aa95-98d151254121" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="7a3107e9-171c-4cbe-8e5d-501322c50c27" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <comment uuid="7b264ce1-9604-430f-913a-6ef252d5469b" bg-color="#FFFFE0" position-x="243" position-y="253" size-x="6" size-x2="125" size-y="-3" size-y2="43" txt-color="#000000"/>
+    <entity uuid="0694655a-1603-49f9-9ed7-9878b5d10547" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="528" position-y="145" size-x="0" size-x2="20" size-y="0" size-y2="20"/>
+    <entity uuid="074e8071-239f-49f9-979e-73f4b1afd3b8" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="77" position-y="256" size-x="0" size-x2="109" size-y="0" size-y2="60"/>
+    <entity uuid="07972266-51a3-4519-b0c1-941675fc27a5" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="-3" position-y="136" size-x="0" size-x2="93" size-y="0" size-y2="87"/>
+    <entity uuid="18b21996-0e60-42fe-b539-73ca84ecea18" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="177" position-y="-44" size-x="0" size-x2="136" size-y="0" size-y2="101"/>
+    <entity uuid="6e407de8-f303-4ba7-b029-c7a7d9192fbd" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="-3" position-y="-29" size-x="0" size-x2="77" size-y="0" size-y2="45"/>
+    <entity uuid="6f487cca-9554-4654-b554-77ec195cd789" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="177" position-y="136" size-x="0" size-x2="122" size-y="0" size-y2="59"/>
+    <entity uuid="75c7ffe8-aafc-496f-9563-d3b991ec98d1" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="538" position-y="245" size-x="0" size-x2="20" size-y="0" size-y2="20"/>
+    <entity uuid="b3465022-3f32-43ce-9583-5d31fc829fd0" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="528" position-y="16" size-x="0" size-x2="20" size-y="0" size-y2="20"/>
+    <many-to-many-association uuid="b65682ef-b1f8-4536-a6ac-b526501843a1" color="#969696"/>
+    <module uuid="a80102c9-c513-4b6b-9f65-8eff2dc489fd" bg-color="#E0F0EF" position-x="72" position-y="115" size-x="43" size-x2="848" size-y="84" size-y2="376"/>
+    <project uuid="dce0675c-f0d7-41fe-9ea8-a0b4cd7d53bc" size-x="0" size-x2="1000" size-y="0" size-y2="529"/>
+  </visual-data>
+</skipper>
