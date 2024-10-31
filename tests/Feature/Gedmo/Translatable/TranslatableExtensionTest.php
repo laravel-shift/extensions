@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace LaravelDoctrineTest\Extensions\Feature\Translatable;
+namespace LaravelDoctrineTest\Extensions\Feature\Gedmo\Translatable;
 
 use LaravelDoctrine\Extensions\Translatable\TranslatableExtension;
 use LaravelDoctrineTest\Extensions\Feature\TestCase;

@@ -2,6 +2,7 @@ providers:
   - LaravelDoctrine\ORM\DoctrineServiceProvider
   - LaravelDoctrine\Extensions\BeberleiExtensionsServiceProvider
   - LaravelDoctrine\Extensions\GedmoExtensionsServiceProvider
+  - LaravelDoctrine\Extensions\Uploadable\UploadableExtensionServiceProvider
 
 workbench:
   start: '/'

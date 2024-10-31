@@ -12,6 +12,8 @@ class GedmoExtensionsServiceProviderAllMappingsTest extends TestCase
 {
     protected function defineEnvironment(mixed $app): void
     {
+        parent::defineEnvironment($app);
+
         // Setup default database to use sqlite :memory:
         tap($app['config'], static function (Repository $config): void {
             $config->set('doctrine.gedmo.all_mappings', true);

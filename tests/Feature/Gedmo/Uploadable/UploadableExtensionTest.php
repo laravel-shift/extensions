@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace LaravelDoctrineTest\Extensions\Feature\Uploadable;
+namespace LaravelDoctrineTest\Extensions\Feature\Gedmo\Uploadable;
 
 use Gedmo\Uploadable\UploadableListener;
 use LaravelDoctrine\Extensions\Uploadable\UploadableExtension;
 use LaravelDoctrine\Extensions\Uploadable\UploadableFacade;
 use LaravelDoctrineTest\Extensions\Feature\TestCase;
 use Mockery as m;
+
+use function app;
 
 class UploadableExtensionTest extends TestCase
 {
@@ -19,7 +21,7 @@ class UploadableExtensionTest extends TestCase
         $listener = m::mock(UploadableListener::class);
 
         $extension = new UploadableExtension(
-            $listener,
+            app(UploadableListener::class),
         );
 
         $extension->addSubscribers(
