@@ -26,8 +26,8 @@ composer require laravel-doctrine/extensions
 Documentation
 -------------
 
-See [the documentation](https://github.com/laravel-doctrine/extensions/tree/2.0.x/docs) for more information.
-~~Full documentation at https://laravel-doctrine-extensions.readthedocs.io~~
+Full documentation at https://laravel-doctrine-extensions.readthedocs.io or in the [docs directory](https://github.com/laravel-doctrine/extensions/tree/2.0.x/docs).
+
 
 
 Provides
