@@ -1,5 +1,6 @@
 <p align="center">
     <img src="https://placehold.co/10x10/337ab7/337ab7.png" width="100%" height="15px">
+    <img width="480px" src="https://github.com/laravel-doctrine/extensions/blob/2.0.x/docs/banner.png"/>
 </p>
 
 Laravel Doctrine Extensions
