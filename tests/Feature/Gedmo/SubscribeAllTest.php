@@ -20,6 +20,8 @@ use LaravelDoctrine\Extensions\Uploadable\UploadableExtension;
 use LaravelDoctrineTest\Extensions\Feature\TestCase;
 use Mockery as m;
 
+use function app;
+
 /**
  * This test case is used to test all Gedmo extensions at once.
  * The point of this repository is not to test the functionality of the extensions,

@@ -10,6 +10,8 @@ use LaravelDoctrine\Extensions\Uploadable\UploadableFacade;
 use LaravelDoctrineTest\Extensions\Feature\TestCase;
 use Mockery as m;
 
+use function app;
+
 class UploadableExtensionTest extends TestCase
 {
     public function testCanRegisterExtension(): void
